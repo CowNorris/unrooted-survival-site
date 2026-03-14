@@ -5,6 +5,7 @@ const config = {
     logoUrl: "https://cdn.discordapp.com/attachments/772927928983617566/1482322307941797999/Unrooted_Survival_FOTO_2.png?ex=69b687ba&is=69b5363a&hm=95d8dd419300240ab65ef9f9ada9fddb5423c5d64a838eff03c4afc825853755&",
   },
   discord: {
+    enabled: false,
     inviteUrl: "https://discord.gg/b9RXNGth6x",
     widgetUrl: "",
   },
@@ -495,6 +496,13 @@ function renderDiscord() {
   const invite = getDiscordInviteUrl();
   setLink(el.discordTopLink, invite);
   setLink(el.discordCardInvite, invite);
+
+  const enabled = config.discord?.enabled !== false;
+  if (!enabled) {
+    hideDiscordSidebar();
+    hideDiscordEmbedCard();
+    return;
+  }
 
   const widgetUrl = getDiscordWidgetUrl();
   if (!widgetUrl) {
