@@ -559,6 +559,13 @@ select:focus {
   gap: 12px;
 }
 
+.beta__left,
+.beta__right {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
 .controls {
   display: grid;
   gap: 10px;
