@@ -149,6 +149,8 @@ const el = {
   searchInput: document.getElementById("searchInput"),
   tagSelect: document.getElementById("tagSelect"),
   themeToggle: document.getElementById("themeToggle"),
+  discordLoginBtn: document.getElementById("discordLoginBtn"),
+  discordLogoutBtn: document.getElementById("discordLogoutBtn"),
   downloadWindows: document.getElementById("downloadWindows"),
   downloadWeb: document.getElementById("downloadWeb"),
   betaList: document.getElementById("betaList"),
