@@ -776,6 +776,37 @@ function initDiscordSidebarSlot() {
   window.addEventListener("resize", syncDiscordSidebarSlot);
 }
 
+async function fetchJson(url, options) {
+  try {
+    const res = await fetch(url, options);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+function setAuthUi(user) {
+  if (el.discordLoginBtn) el.discordLoginBtn.hidden = Boolean(user);
+  if (el.discordLogoutBtn) el.discordLogoutBtn.hidden = !user;
+}
+
+async function refreshAuthUi() {
+  const user = await fetchJson("/api/me", { credentials: "include" });
+  setAuthUi(user);
+}
+
+function initAuth() {
+  setAuthUi(null);
+  refreshAuthUi();
+  if (el.discordLogoutBtn) {
+    el.discordLogoutBtn.addEventListener("click", async () => {
+      await fetch("/api/logout", { method: "POST", credentials: "include" });
+      await refreshAuthUi();
+    });
+  }
+}
+
 updateHeroMeta();
 renderBrand();
 applyInitialLinks();
@@ -791,3 +822,4 @@ initFilters();
 renderUpdates();
 renderBeta();
 initDiscordSidebarSlot();
+initAuth();
