@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unrooted Survival</title>
+    <meta name="description" content="Devlog, atualizações, downloads e beta do Unrooted Survival (Unity)." />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' https: data:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com data:; script-src 'self'; frame-src https://discord.com; upgrade-insecure-requests"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="icon" href="./favicon.svg?v=3" type="image/svg+xml" />
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/772927928983617566/1482322307941797999/Unrooted_Survival_FOTO_2.png?v=2" type="image/png" />
+    <link rel="shortcut icon" href="./favicon.svg?v=3" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="https://cdn.discordapp.com/attachments/772927928983617566/1482322307941797999/Unrooted_Survival_FOTO_2.png?v=2" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <a class="brand" href="#inicio" aria-label="Ir para o início">
+          <img class="brand__logo" id="brandLogoTop" alt="Unrooted Survival" hidden />
+          <span class="brand__dot" id="brandDotTop" aria-hidden="true"></span>
+          <span class="brand__text" id="brandTextTop">Unrooted Survival</span>
+        </a>
+
+        <nav class="nav" aria-label="Navegação principal">
+          <a class="nav__link" href="#atualizacoes">Atualizações</a>
+          <!-- <a class="nav__link" href="#download">Download</a> -->
+          <a class="nav__link" href="#beta">Beta</a>
+          <a class="nav__link" href="#testers">Testers</a>
+          <a class="nav__link" href="#bugs">Bugs</a>
+          <a class="nav__link" href="#creditos">Créditos</a>
+        </nav>
+
+        <div class="topbar__actions">
+          <a class="btn btn--ghost" href="https://discord.gg/b9RXNGth6x" target="_blank" rel="noreferrer">Discord</a>
+          <button class="btn btn--ghost" type="button" id="themeToggle" aria-label="Alternar tema">
+            Tema
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <div class="discord-sidebar-slot" id="discordSidebarSlot">
+        <aside class="discord-sidebar" id="discordSidebarWrap" hidden aria-label="Discord">
+          <div class="discord-sidebar__head">
+            <div class="discord-sidebar__title">Discord</div>
+            <a class="link" href="#" id="discordSidebarJoin" aria-disabled="true">Entrar</a>
+          </div>
+          <iframe class="discord-sidebar__frame" id="discordSidebarFrame" title="Membros do Discord" loading="lazy"></iframe>
+        </aside>
+      </div>
+
+      <main id="conteudo">
+      <section class="hero" id="inicio">
+        <div class="container hero__inner">
+          <div class="hero__content">
+            <p class="badge" id="heroBadge">Devlog • Unrooted Survival</p>
+            <h1 class="hero__title" id="heroTitle">Unrooted Survival</h1>
+            <p class="hero__subtitle">
+              Aqui eu posto as novidades, versões, melhorias e próximos passos do jogo.
+            </p>
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="#atualizacoes">Ver atualizações</a>
+              <!-- <a class="btn" href="#download">Baixar build</a> -->
+            </div>
+            <div class="hero__meta">
+              <div class="meta-card">
+                <div class="meta-card__label">Status</div>
+                <div class="meta-card__value" id="statusValue">Em desenvolvimento</div>
+              </div>
+              <div class="meta-card">
+                <div class="meta-card__label">Última versão</div>
+                <div class="meta-card__value" id="latestVersion">—</div>
+              </div>
+              <div class="meta-card">
+                <div class="meta-card__label">Última atualização</div>
+                <div class="meta-card__value" id="latestDate">—</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero__panel" aria-label="Resumo rápido">
+            <div class="panel">
+              <h2 class="panel__title">O que tem aqui</h2>
+              <ul class="panel__list">
+                <li>Notas de versão (o que mudou)</li>
+                <li>Roadmap com prioridades</li>
+                <!-- <li>Links de download (quando tiver)</li> -->
+                <li>Área de beta testes (builds e feedback)</li>
+                <li>Imagens e vídeos (quando você adicionar)</li>
+              </ul>
+              <div class="panel__tip">
+                Dica: para adicionar uma atualização, edite o arquivo <strong>main.js</strong> e inclua um item no array
+                <strong>updates</strong>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="agora">
+        <div class="container">
+          <div class="section__head">
+            <div>
+              <h2 class="section__title">Agora</h2>
+              <p class="section__subtitle">O que eu estou fazendo no momento + objetivos da semana.</p>
+            </div>
+          </div>
+
+          <div class="split">
+            <div class="panel">
+              <h3 class="panel__title">O que estou fazendo agora</h3>
+              <p class="muted" id="nowText">—</p>
+            </div>
+
+            <div class="panel">
+              <h3 class="panel__title">Objetivo da semana</h3>
+              <div class="muted">Coisas pequenas e claras pra eu não me perder.</div>
+              <div class="spacer"></div>
+              <ul class="panel__list" id="weekGoalsList"></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="atualizacoes">
+        <div class="container">
+          <div class="section__head">
+            <div>
+              <h2 class="section__title">Atualizações</h2>
+              <p class="section__subtitle">Um feed organizado por data e versão.</p>
+            </div>
+            <div class="filters">
+              <label class="input" aria-label="Pesquisar atualizações">
+                <span class="input__label">Pesquisar</span>
+                <input id="searchInput" type="search" placeholder="Ex.: performance, fase 1, bug..." />
+              </label>
+              <label class="input" aria-label="Filtrar por tag">
+                <span class="input__label">Tag</span>
+                <select id="tagSelect">
+                  <option value="">Todas</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="updates" id="updatesList" aria-live="polite"></div>
+          <div class="empty" id="emptyState" hidden>
+            Nenhuma atualização encontrada com esse filtro.
+          </div>
+        </div>
+      </section>
+
+      <!-- <section class="section section--alt" id="roadmap">
+        <div class="container">
+          <div class="section__head">
+            <div>
+              <h2 class="section__title">Roadmap</h2>
+              <p class="section__subtitle">O que eu quero fazer em seguida (pode mudar).</p>
+            </div>
+          </div> -->
+
+          <!-- <div class="grid">
+            <article class="card">
+              <h3 class="card__title">Agora</h3>
+              <ul class="card__list">
+                <li>Polir controles e sensação do movimento</li>
+                <li>Corrigir bugs mais chatos</li>
+                <li>Adicionar feedback visual e sonoro</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3 class="card__title">Em breve</h3>
+              <ul class="card__list">
+                <li>Mais conteúdo: fases / inimigos / itens</li>
+                <li>Sistema simples de progresso</li>
+                <li>Otimização de performance</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3 class="card__title">Depois</h3>
+              <ul class="card__list">
+                <li>Menu e opções (áudio, gráficos, controles)</li>
+                <li>Salvar e carregar</li>
+                <li>Build pública para testes</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section> -->
+
+      <section class="section" id="controles" hidden>
+        <div class="container">
+          <div class="section__head">
+            <div>
+              <h2 class="section__title">Controles</h2>
+              <p class="section__subtitle">Pra ninguém ficar perdido no beta.</p>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="controls" id="controlsList" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- <section class="section" id="download">
+        <div class="container">
+          <div class="section__head">
+            <div>
+              <h2 class="section__title">Download</h2>
+              <p class="section__subtitle">Coloque aqui o link da build quando você quiser compartilhar.</p>
+            </div>
+          </div> -->
+
+          <!-- <div class="download">
+            <div class="download__info">
+              <div class="kv">
+                <div class="kv__k">Windows</div>
+                <div class="kv__v"><a class="link" href="#" id="downloadWindows" aria-disabled="true">Adicionar link</a></div>
+              </div>
+              <div class="kv">
+                <div class="kv__k">Web</div>
+                <div class="kv__v"><a class="link" href="#" id="downloadWeb" aria-disabled="true">Adicionar link</a></div>
+              </div> -->
+              <div class="kv">
+                <div class="kv__k">Changelog</div>
+                <div class="kv__v"><a class="link" href="#atualizacoes">Ver notas de versão</a></div>
+              </div>
+            </div>
+            <!-- <div class="download__box">
+              <h3 class="download__title">Antes de baixar</h3>
+              <ul class="download__list"> -->
+                <!-- <li>Builds podem ter bugs e mudanças rápidas</li>
+                <li>Se der erro, me diga o que aconteceu e seu PC/versão</li>
+                <li>Se quiser, grave um vídeo curto do bug</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section> -->
+
+      <section class="section section--alt" id="beta">
+        <div class="container">
+          <div class="section__head">
+            <div>
+              <h2 class="section__title">Beta testes</h2>
+              <p class="section__subtitle">Um lugar para você organizar builds de teste e receber feedback.</p>
+            </div>
+          </div>
+
+          <div class="beta">
+            <div class="beta__left">
+              <div class="panel">
+                <h3 class="panel__title">Builds do beta</h3>
+                <p class="muted">Adicione seus links no <strong>main.js</strong> (array <strong>betaBuilds</strong>).</p>
+                <div class="beta__list" id="betaList" aria-live="polite"></div>
+                <div class="empty" id="betaEmpty" hidden>Nenhuma build de beta cadastrada ainda.</div>
+              </div>
+
+              <article class="card">
+                <h3 class="card__title">Checklist do beta</h3>
+                <ul class="card__list" id="betaChecklist"></ul>
+              </article>
+
+              <article class="card">
+                <h3 class="card__title">Template de bug</h3>
+                <div class="muted">Copie e cole quando for reportar (ajuda muito).</div>
+                <div class="spacer"></div>
+                <pre class="codeblock" id="betaBugTemplate"></pre>
+              </article>
+            </div>
+
+            <div class="beta__right">
+              <article class="card">
+                <h3 class="card__title">Como participar</h3>
+                <ul class="card__list">
+                  <li>Baixe a build mais recente do beta</li>
+                  <li>Jogue 10–20 minutos e anote o que achou</li>
+                  <li>Se tiver bug, mande o passo a passo para reproduzir</li>
+                </ul>
+              </article>
+
+              <article class="card">
+                <h3 class="card__title">Enviar feedback</h3>
+                <div class="kv">
+                  <div class="kv__k">Formulário</div>
+                  <div class="kv__v"><a class="link" href="#" id="betaFormLink" aria-disabled="true">Adicionar link</a></div>
+                </div>
+                <div class="kv">
+                  <div class="kv__k">Discord</div>
+                  <div class="kv__v"><a class="link" href="#" id="betaDiscordLink" aria-disabled="true">Adicionar link</a></div>
+                </div>
+                <div class="kv">
+                  <div class="kv__k">E-mail</div>
+                  <div class="kv__v"><a class="link" href="mailto:seuemail@exemplo.com" id="betaEmailLink">seuemail@exemplo.com</a></div>
+                </div>
+              </article>
+
+              <article class="card">
+                <h3 class="card__title">Discord do jogo</h3>
+                <div class="muted">Entre pra acompanhar novidades e mandar feedback.</div>
+                <div class="spacer"></div>
+                <div class="kv">
+                  <div class="kv__k">Convite</div>
+                  <div class="kv__v"><a class="link" href="#" id="discordCardInvite" aria-disabled="true">Adicionar link</a></div>
+                </div>
+                <div class="spacer"></div>
+                <div class="embed" id="discordEmbedWrap" hidden>
+                  <iframe class="embed__frame" id="discordEmbedFrame" title="Discord" loading="lazy"></iframe>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="testers">
+        <div class="container">
+          <div class="section__head">
+            <div>
+              <h2 class="section__title">Beta testers</h2>
+              <p class="section__subtitle">Quem ajudou testando o jogo.</p>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="muted">
+              <!-- Para adicionar, edite o <strong>main.js</strong> (lista <strong>betaTesters</strong>) e coloque a imagem na mesma pasta do site. -->
+            </div>
+            <div class="spacer"></div>
+            <div class="testers" id="testersList" aria-live="polite"></div>
+            <div class="empty" id="testersEmpty" hidden>Nenhum beta tester listado ainda.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="bugs">
+        <div class="container">
+          <div class="section__head">
+            <div>
+              <h2 class="section__title">Bugs conhecidos</h2>
+              <p class="section__subtitle">Coisas que eu já sei que estão acontecendo.</p>
+            </div>
+          </div>
+
+          <div class="panel">
+            <ul class="panel__list" id="bugsList"></ul>
+            <div class="empty" id="bugsEmpty" hidden>Nenhum bug conhecido listado ainda.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="feedback">
+        <div class="container">
+          <div class="section__head">
+            <div>
+              <h2 class="section__title">Sugestões e feedback</h2>
+              <p class="section__subtitle">Ideias, bugs e opiniões (sem enrolação).</p>
+            </div>
+          </div>
+
+          <div class="split">
+            <div class="panel">
+              <h3 class="panel__title">Onde enviar</h3>
+              <div class="kv">
+                <div class="kv__k">Formulário</div>
+                <div class="kv__v"><a class="link" href="#" id="suggestionFormLink" aria-disabled="true">Adicionar link</a></div>
+              </div>
+              <div class="kv">
+                <div class="kv__k">Discord</div>
+                <div class="kv__v"><a class="link" href="#" id="suggestionDiscordLink" aria-disabled="true">Adicionar link</a></div>
+              </div>
+              <div class="kv">
+                <div class="kv__k">Dica</div>
+                <div class="kv__v"><span class="muted">Se puder, mande vídeo/print do bug.</span></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h3 class="panel__title">Modelo rápido</h3>
+              <div class="muted">Se você usar isso, eu consigo arrumar as coisas bem mais rápido.</div>
+              <div class="spacer"></div>
+              <pre class="codeblock" id="feedbackTemplate"></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="midia">
+        <div class="container">
+          <div class="section__head">
+            <div>
+              <h2 class="section__title">Mídia</h2>
+              <p class="section__subtitle">Um lugar para colocar imagens, GIFs e vídeos.</p>
+            </div>
+          </div>
+
+          <div class="gallery">
+            <div class="shot">
+              <div class="shot__ph" aria-hidden="true"></div>
+              <div class="shot__cap">Screenshot 1 (substitua quando tiver)</div>
+            </div>
+            <div class="shot">
+              <div class="shot__ph" aria-hidden="true"></div>
+              <div class="shot__cap">Screenshot 2</div>
+            </div>
+            <div class="shot">
+              <div class="shot__ph" aria-hidden="true"></div>
+              <div class="shot__cap">GIF / vídeo</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="creditos">
+        <div class="container">
+          <div class="section__head">
+            <div>
+              <h2 class="section__title">Créditos</h2>
+              <p class="section__subtitle">Pessoas e ferramentas que ajudaram no projeto.</p>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="credits" id="creditsList" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="sobre">
+        <div class="container">
+          <div class="about">
+            <div class="about__main">
+              <h2 class="section__title">Sobre o jogo</h2>
+              <p class="about__text">
+                Escreva aqui uma descrição curta e direta: gênero, ideia principal e o que deixa seu jogo diferente.
+                Pode ser só 3–5 linhas.
+              </p>
+              <div class="about__tags" id="aboutTags">
+                <span class="pill">Ação</span>
+                <span class="pill">Aventura</span>
+                <span class="pill">Multiplayer</span>
+              </div>
+            </div>
+            <div class="about__side">
+              <div class="panel">
+                <h3 class="panel__title">Contato</h3>
+                <div class="contact">
+                  <div class="kv">
+                    <div class="kv__k">Discord</div>
+                    <div class="kv__v"><span class="muted">https://discord.gg/b9RXNGth6x</span></div>
+                  </div>
+                  <!-- <div class="kv">
+                    <div class="kv__k">Itch.io</div>
+                    <div class="kv__v"><span class="muted">coloque aqui</span></div>
+                  </div> -->
+                  <div class="kv">
+                    <div class="kv__k">E-mail</div>
+                    <div class="kv__v"><span class="muted">graffg621@gmail.com</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__left">
+          <div class="brand brand--small">
+            <img class="brand__logo" id="brandLogoFooter" alt="Unrooted Survival" hidden />
+            <span class="brand__dot" id="brandDotFooter" aria-hidden="true"></span>
+            <span class="brand__text" id="brandTextFooter">Unrooted Survival</span>
+          </div>
+          <div class="footer__muted">Copyright © 2026 - Unrooted Survival.</div>
+        </div>
+        <div class="footer__right">
+          <a class="link" href="#inicio">Voltar ao topo</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./main.js" defer></script>
+  </body>
+</html>
