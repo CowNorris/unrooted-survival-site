@@ -9,6 +9,9 @@ const config = {
     inviteUrl: "https://discord.gg/b9RXNGth6x",
     widgetUrl: "https://discord.com/api/guilds/1482316410884456450/widget.json",
   },
+  auth: {
+    enabled: false,
+  },
   overview: {
     currentVersion: "0.1.0",
     nextVersion: "0.1.1",
@@ -786,6 +789,10 @@ async function fetchJson(url, options) {
   }
 }
 
+function getAuthEnabled() {
+  return config.auth?.enabled === true;
+}
+
 function setAuthUi(user) {
   if (el.discordLoginBtn) el.discordLoginBtn.hidden = Boolean(user);
   if (el.discordLogoutBtn) el.discordLogoutBtn.hidden = !user;
@@ -797,6 +804,17 @@ async function refreshAuthUi() {
 }
 
 function initAuth() {
+  if (!getAuthEnabled()) {
+    if (el.discordLoginBtn) el.discordLoginBtn.hidden = true;
+    if (el.discordLogoutBtn) el.discordLogoutBtn.hidden = true;
+    return;
+  }
+
+  if (el.discordLoginBtn) {
+    el.discordLoginBtn.href = "/auth/discord";
+    el.discordLoginBtn.removeAttribute("aria-disabled");
+  }
+
   setAuthUi(null);
   refreshAuthUi();
   if (el.discordLogoutBtn) {
