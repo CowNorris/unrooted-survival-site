@@ -48,7 +48,7 @@ const config = {
   ],
   suggestions: {
     formUrl: "",
-    discordUrl: "",
+    discordUrl: "https://discord.gg/b9RXNGth6x",
   },
   feedbackTemplate: [
     "Versão do jogo: v0.0.0",
@@ -60,7 +60,7 @@ const config = {
   ],
   beta: {
     formUrl: "",
-    discordUrl: "",
+    discordUrl: "https://discord.gg/b9RXNGth6x",
     email: "seuemail@exemplo.com",
     checklist: [
       "Testar controles (andar, pular, atacar) por 10 minutos",
