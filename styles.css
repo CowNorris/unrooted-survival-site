@@ -38,10 +38,6 @@ body {
   line-height: 1.5;
 }
 
-body.has-discord-sidebar {
-  padding-left: 332px;
-}
-
 a {
   color: inherit;
   text-decoration: none;
@@ -52,17 +48,25 @@ a {
   margin: 0 auto;
 }
 
+.layout {
+  padding: 0 16px;
+}
+
+body.has-discord-sidebar .layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
 .discord-sidebar {
-  position: fixed;
-  left: 16px;
-  top: 78px;
   width: 300px;
-  z-index: 40;
   border: 1px solid var(--border);
   background: color-mix(in oklab, var(--card) 86%, transparent);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
+  margin-top: 58px;
 }
 
 .discord-sidebar__head {
@@ -113,8 +117,8 @@ a {
 }
 
 @media (max-width: 1200px) {
-  body.has-discord-sidebar {
-    padding-left: 0;
+  body.has-discord-sidebar .layout {
+    display: block;
   }
 
   .discord-sidebar {
