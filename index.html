@@ -40,13 +40,15 @@
     </header>
 
     <div class="layout">
-      <aside class="discord-sidebar" id="discordSidebarWrap" hidden aria-label="Discord">
-        <div class="discord-sidebar__head">
-          <div class="discord-sidebar__title">Discord</div>
-          <a class="link" href="#" id="discordSidebarJoin" aria-disabled="true">Entrar</a>
-        </div>
-        <iframe class="discord-sidebar__frame" id="discordSidebarFrame" title="Membros do Discord" loading="lazy"></iframe>
-      </aside>
+      <div class="discord-sidebar-slot" id="discordSidebarSlot">
+        <aside class="discord-sidebar" id="discordSidebarWrap" hidden aria-label="Discord">
+          <div class="discord-sidebar__head">
+            <div class="discord-sidebar__title">Discord</div>
+            <a class="link" href="#" id="discordSidebarJoin" aria-disabled="true">Entrar</a>
+          </div>
+          <iframe class="discord-sidebar__frame" id="discordSidebarFrame" title="Membros do Discord" loading="lazy"></iframe>
+        </aside>
+      </div>
 
       <main id="conteudo">
       <section class="hero" id="inicio">

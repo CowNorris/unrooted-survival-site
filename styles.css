@@ -59,14 +59,19 @@ body.has-discord-sidebar .layout {
   align-items: start;
 }
 
+.discord-sidebar-slot {
+  padding-top: 58px;
+}
+
 .discord-sidebar {
   width: 300px;
+  position: sticky;
+  top: 78px;
   border: 1px solid var(--border);
   background: color-mix(in oklab, var(--card) 86%, transparent);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
-  margin-top: 58px;
 }
 
 .discord-sidebar__head {
@@ -121,7 +126,7 @@ body.has-discord-sidebar .layout {
     display: block;
   }
 
-  .discord-sidebar {
+  .discord-sidebar-slot {
     display: none;
   }
 }

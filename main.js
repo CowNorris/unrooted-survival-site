@@ -164,6 +164,8 @@ const el = {
   discordSidebarWrap: document.getElementById("discordSidebarWrap"),
   discordSidebarFrame: document.getElementById("discordSidebarFrame"),
   discordSidebarJoin: document.getElementById("discordSidebarJoin"),
+  discordSidebarSlot: document.getElementById("discordSidebarSlot"),
+  mainContent: document.getElementById("conteudo"),
 };
 
 function clampPercent(value) {
@@ -195,14 +197,34 @@ function getDiscordWidgetUrl() {
   return String(config.discord?.widgetUrl ?? "").trim();
 }
 
+function normalizeDiscordWidgetUrl(widgetUrl) {
+  const raw = String(widgetUrl ?? "").trim();
+  if (!raw) return "";
+
+  const apiMatch = raw.match(/discord(?:app)?\.com\/api\/guilds\/(\d+)\/widget\.json/i);
+  if (apiMatch) return `https://discord.com/widget?id=${apiMatch[1]}`;
+
+  return raw;
+}
+
 function applyDiscordWidgetTheme(widgetUrl, theme) {
+  const normalized = normalizeDiscordWidgetUrl(widgetUrl);
+  if (!normalized) return "";
   try {
-    const url = new URL(widgetUrl);
+    const url = new URL(normalized);
     url.searchParams.set("theme", theme === "light" ? "light" : "dark");
     return url.toString();
   } catch {
-    return widgetUrl;
+    return normalized;
   }
+}
+
+function syncDiscordSidebarSlot() {
+  if (!el.discordSidebarSlot || !el.mainContent) return;
+  const halfHeight = Math.floor(el.mainContent.scrollHeight / 2);
+  const minHeight = el.discordSidebarWrap ? el.discordSidebarWrap.offsetHeight + 24 : 0;
+  const height = Math.max(minHeight, halfHeight);
+  el.discordSidebarSlot.style.height = `${height}px`;
 }
 
 function hideDiscordSidebar() {
@@ -223,6 +245,7 @@ function showDiscordSidebar(widgetUrl) {
   el.discordSidebarWrap.hidden = false;
   document.body.classList.add("has-discord-sidebar");
   setLink(el.discordSidebarJoin, getDiscordInviteUrl());
+  syncDiscordSidebarSlot();
   return true;
 }
 
@@ -746,6 +769,11 @@ function initFilters() {
   el.tagSelect.addEventListener("change", renderUpdates);
 }
 
+function initDiscordSidebarSlot() {
+  syncDiscordSidebarSlot();
+  window.addEventListener("resize", syncDiscordSidebarSlot);
+}
+
 updateHeroMeta();
 renderBrand();
 applyInitialLinks();
@@ -760,3 +788,4 @@ initTheme();
 initFilters();
 renderUpdates();
 renderBeta();
+initDiscordSidebarSlot();
