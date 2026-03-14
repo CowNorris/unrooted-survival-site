@@ -61,7 +61,7 @@ const config = {
   beta: {
     formUrl: "",
     discordUrl: "https://discord.gg/b9RXNGth6x",
-    email: "seuemail@exemplo.com",
+    email: "graffg621@gmail.com",
     checklist: [
       "Testar controles (andar, pular, atacar) por 10 minutos",
       "Tentar travar o jogo (pular em cantos, bater em paredes)",
@@ -160,6 +160,9 @@ const el = {
   discordCardInvite: document.getElementById("discordCardInvite"),
   discordEmbedWrap: document.getElementById("discordEmbedWrap"),
   discordEmbedFrame: document.getElementById("discordEmbedFrame"),
+  discordSidebarWrap: document.getElementById("discordSidebarWrap"),
+  discordSidebarFrame: document.getElementById("discordSidebarFrame"),
+  discordSidebarJoin: document.getElementById("discordSidebarJoin"),
 };
 
 function clampPercent(value) {
@@ -189,6 +192,37 @@ function getDiscordInviteUrl() {
 
 function getDiscordWidgetUrl() {
   return String(config.discord?.widgetUrl ?? "").trim();
+}
+
+function applyDiscordWidgetTheme(widgetUrl, theme) {
+  try {
+    const url = new URL(widgetUrl);
+    url.searchParams.set("theme", theme === "light" ? "light" : "dark");
+    return url.toString();
+  } catch {
+    return widgetUrl;
+  }
+}
+
+function hideDiscordSidebar() {
+  if (el.discordSidebarWrap) el.discordSidebarWrap.hidden = true;
+  if (el.discordSidebarFrame) el.discordSidebarFrame.removeAttribute("src");
+  document.body.classList.remove("has-discord-sidebar");
+}
+
+function hideDiscordEmbedCard() {
+  if (el.discordEmbedWrap) el.discordEmbedWrap.hidden = true;
+  if (el.discordEmbedFrame) el.discordEmbedFrame.removeAttribute("src");
+}
+
+function showDiscordSidebar(widgetUrl) {
+  if (!el.discordSidebarWrap || !el.discordSidebarFrame) return false;
+  const theme = getCurrentTheme();
+  el.discordSidebarFrame.setAttribute("src", applyDiscordWidgetTheme(widgetUrl, theme));
+  el.discordSidebarWrap.hidden = false;
+  document.body.classList.add("has-discord-sidebar");
+  setLink(el.discordSidebarJoin, getDiscordInviteUrl());
+  return true;
 }
 
 function renderBrand() {
@@ -462,14 +496,21 @@ function renderDiscord() {
   setLink(el.discordTopLink, invite);
   setLink(el.discordCardInvite, invite);
 
-  if (!el.discordEmbedWrap || !el.discordEmbedFrame) return;
   const widgetUrl = getDiscordWidgetUrl();
   if (!widgetUrl) {
-    el.discordEmbedWrap.hidden = true;
-    el.discordEmbedFrame.removeAttribute("src");
+    hideDiscordSidebar();
+    hideDiscordEmbedCard();
     return;
   }
-  el.discordEmbedFrame.setAttribute("src", widgetUrl);
+
+  if (showDiscordSidebar(widgetUrl)) {
+    hideDiscordEmbedCard();
+    return;
+  }
+
+  hideDiscordSidebar();
+  if (!el.discordEmbedWrap || !el.discordEmbedFrame) return;
+  el.discordEmbedFrame.setAttribute("src", applyDiscordWidgetTheme(widgetUrl, getCurrentTheme()));
   el.discordEmbedWrap.hidden = false;
 }
 
@@ -659,11 +700,13 @@ function setTheme(theme) {
     document.documentElement.removeAttribute("data-theme");
     localStorage.removeItem("theme");
     updateThemeButton();
+    renderDiscord();
     return;
   }
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem("theme", theme);
   updateThemeButton();
+  renderDiscord();
 }
 
 function toggleTheme() {
@@ -677,9 +720,13 @@ function initTheme() {
   const saved = localStorage.getItem("theme");
   if (saved === "dark" || saved === "light") document.documentElement.setAttribute("data-theme", saved);
   updateThemeButton();
+  renderDiscord();
   if (window.matchMedia) {
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-      if (!document.documentElement.getAttribute("data-theme")) updateThemeButton();
+      if (!document.documentElement.getAttribute("data-theme")) {
+        updateThemeButton();
+        renderDiscord();
+      }
     });
   }
   el.themeToggle.addEventListener("click", toggleTheme);
